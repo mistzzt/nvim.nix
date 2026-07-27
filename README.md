@@ -1,6 +1,6 @@
 # nvim.nix
 
-Shared [nixvim](https://github.com/nix-community/nixvim) configuration, usable standalone or layered under home-manager. Serves as the common base for per-machine (personal / work) tweaks.
+Shared [nixvim](https://github.com/nix-community/nixvim) configuration, usable standalone or layered under home-manager. Serves as the common base for per-machine (personal / work) tweaks. The config is derived from [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) as a starting point. There is no mason and no plugin manager; nix provides all binaries and plugins, and formatter/LSP executables are pinned to store paths rather than resolved from `$PATH`.
 
 ## Try it
 
@@ -8,6 +8,27 @@ Shared [nixvim](https://github.com/nix-community/nixvim) configuration, usable s
 nix run .          # launch the configured neovim
 nix flake check    # nixvim's headless smoke test
 ```
+
+## Plugins
+
+| Plugin                 | What it is                                                                                                                                                        |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **diffview.nvim**      | Repo-level diff browser: side-by-side diff of the whole working tree with a file panel, plus commit/file history. The main use case: reviewing agent-produced diffs |
+| **gitsigns.nvim**      | Git status in the gutter and hunk operations: stage, reset, preview, blame, navigate `]c`/`[c`, plus an `ih` hunk textobject and quickfix listing                   |
+| **blink.cmp**          | Autocompletion engine: popup menu as you type, fed by LSP and path sources, with signature help                                                                    |
+| **nvim-lspconfig**     | Ready-made configs for talking to language servers; provides rename, code action, go-to-definition, references                                                     |
+| **fidget.nvim**        | Small floating notifications showing LSP progress (indexing, loading workspace)                                                                                    |
+| **conform.nvim**       | Formatter runner: dispatches buffer/range to an external formatter per filetype (alejandra for nix, ruff for python)                                               |
+| **telescope.nvim**     | Fuzzy finder over anything: files, git files, live grep, buffers, help, diagnostics, LSP symbols. fzf-native speeds up matching; ui-select routes vim's builtin pickers through it |
+| **nvim-treesitter**    | Incremental parser giving accurate syntax highlighting and indentation from real grammars, not regex                                                               |
+| **todo-comments.nvim** | Highlights `TODO`/`FIXME`/`HACK`/`NOTE` in comments and makes them searchable; useful for finding agent-left markers                                               |
+| **mini.ai**            | Extra textobjects: `vaf` function, `ciq` quotes, argument objects, etc.                                                                                            |
+| **mini.surround**      | Add/change/delete surrounding pairs: `saiw)` surround word, `sd'` delete quotes, `sr)'` replace                                                                    |
+| **mini.statusline**    | Minimal statusline: mode, file, git branch, diagnostics, position                                                                                                  |
+| **mini.icons**         | File-type icons for pickers and statusline (mocks web-devicons for plugins that expect it)                                                                         |
+| **guess-indent.nvim**  | Detects an existing file's indentation and sets buffer options to match                                                                                            |
+| **which-key.nvim**     | After pressing a prefix (e.g. `<leader>`), pops up a panel of available continuations with descriptions                                                            |
+| **catppuccin/nvim**    | Colorscheme: latte when the terminal background is light, mocha when dark                                                                                          |
 
 ## Outputs
 
