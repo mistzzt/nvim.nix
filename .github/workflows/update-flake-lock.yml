@@ -1,0 +1,44 @@
+name: Update flake.lock
+
+on:
+  schedule:
+    # Weekly (UTC); off-hour minute avoids the top-of-the-hour pileup.
+    - cron: "21 10 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - uses: DeterminateSystems/update-flake-lock@main
+        id: update
+        with:
+          pr-title: "bot: update flake.lock"
+          pr-labels: |
+            automation
+            dependencies
+
+      # PRs opened with GITHUB_TOKEN don't trigger other workflows, so
+      # validate here and merge only on success. A failing check leaves the
+      # PR open for manual inspection.
+      - name: Verify updated flake
+        if: steps.update.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr checkout "${{ steps.update.outputs.pull-request-number }}"
+          nix flake check
+
+      - name: Merge
+        if: steps.update.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr merge --squash --delete-branch "${{ steps.update.outputs.pull-request-number }}"
