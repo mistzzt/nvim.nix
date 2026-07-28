@@ -38,7 +38,7 @@
           }
           {
             __unkeyed-1 = "gr";
-            group = "LSP Actions";
+            group = "LSP ([G]oto [R]eference)";
             mode = "n";
           }
           {
@@ -85,6 +85,7 @@
 
       grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
         bash
+        beancount
         c
         diff
         html
