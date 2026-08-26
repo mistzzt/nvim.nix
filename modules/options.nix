@@ -19,6 +19,7 @@
     showmode = false;
 
     breakindent = true;
+    linebreak = true;
 
     undofile = true;
 
