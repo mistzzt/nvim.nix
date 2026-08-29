@@ -6,6 +6,7 @@
     ./diffview.nix
     ./git.nix
     ./lsp.nix
+    ./orgmode.nix
     ./telescope.nix
   ];
 
@@ -44,6 +45,10 @@
           {
             __unkeyed-1 = "<leader>d";
             group = "[D]iffview";
+          }
+          {
+            __unkeyed-1 = "<leader>o";
+            group = "[O]rg";
           }
         ];
       };
