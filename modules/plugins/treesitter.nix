@@ -1,10 +1,4 @@
 {config, ...}: {
-  dependencies = {
-    # gcc breaks on darwin and grammarPackages makes it unneeded
-    # https://github.com/nix-community/nixvim/issues/1282
-    gcc.enable = false;
-  };
-
   plugins.treesitter = {
     enable = true;
 
