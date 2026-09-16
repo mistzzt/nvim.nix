@@ -90,7 +90,6 @@
 
       grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
         bash
-        beancount
         c
         diff
         html

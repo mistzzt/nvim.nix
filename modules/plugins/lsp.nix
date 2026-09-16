@@ -30,8 +30,6 @@ in {
 
     basedpyright.enable = true;
     ruff.enable = true;
-
-    beancount.enable = true;
   };
 
   lsp.keymaps = [
