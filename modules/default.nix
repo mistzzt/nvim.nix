@@ -2,6 +2,7 @@
   imports = [
     ./options.nix
     ./keymaps.nix
+    ./languages
     ./plugins
   ];
 

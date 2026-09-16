@@ -1,4 +1,12 @@
 {
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>h";
+      group = "Git [H]unk";
+      mode = ["n" "v"];
+    }
+  ];
+
   plugins.gitsigns = {
     enable = true;
     settings = {

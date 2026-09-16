@@ -1,8 +1,4 @@
 {
-  pkgs,
-  lib,
-  ...
-}: {
   plugins.conform-nvim = {
     enable = true;
 
@@ -13,17 +9,6 @@
       format_on_save = null;
 
       default_format_opts.lsp_format = "fallback";
-
-      formatters_by_ft = {
-        nix = ["alejandra"];
-        python = ["ruff_format"];
-      };
-
-      # point at the nix-provided binaries rather than relying on $PATH
-      formatters = {
-        alejandra.command = lib.getExe pkgs.alejandra;
-        ruff_format.command = lib.getExe pkgs.ruff;
-      };
     };
   };
 

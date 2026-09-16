@@ -20,6 +20,7 @@ nix flake check    # nixvim's headless smoke test
 | **fidget.nvim**        | Small floating notifications showing LSP progress (indexing, loading workspace)                                                                                    |
 | **conform.nvim**       | Formatter runner: dispatches buffer/range to an external formatter per filetype (alejandra for nix, ruff for python)                                               |
 | **telescope.nvim**     | Fuzzy finder over anything: files, git files, live grep, buffers, help, diagnostics, LSP symbols. fzf-native speeds up matching; ui-select routes vim's builtin pickers through it |
+| **neo-tree.nvim**      | File tree for exploring projects: `\` reveals the current file; `\` inside the tree closes it. Opens automatically when editing a directory, otherwise stays hidden at startup |
 | **nvim-treesitter**    | Incremental parser giving accurate syntax highlighting and indentation from real grammars, not regex                                                               |
 | **todo-comments.nvim** | Highlights `TODO`/`FIXME`/`HACK`/`NOTE` in comments and makes them searchable; useful for finding agent-left markers                                               |
 | **orgmode.nvim**       | Org-mode editing and task management, with agenda files under `~/personal/orbit`, inbox capture, custom TODO states, and per-file archives                         |
@@ -57,7 +58,7 @@ programs.nixvim = {
   imports = [inputs.nvim-nix.nixvimModules.default];
 
   # machine-specific tweaks
-  plugins.lsp.servers.gopls.enable = true;
+  lsp.servers.gopls.enable = true;
 };
 ```
 

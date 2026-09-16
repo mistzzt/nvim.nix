@@ -1,4 +1,11 @@
 {
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>o";
+      group = "[O]rg";
+    }
+  ];
+
   plugins.orgmode = {
     enable = true;
 

@@ -9,6 +9,13 @@ let
     options.desc = desc;
   };
 in {
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>d";
+      group = "[D]iffview";
+    }
+  ];
+
   plugins.diffview.enable = true;
 
   keymaps = [

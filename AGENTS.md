@@ -26,12 +26,14 @@ There is no separate lint or test suite; `nix flake check` is the verification s
 
 - `modules/default.nix`: imports everything, plus aliases and colorscheme.
 - `modules/options.nix`, `modules/keymaps.nix`: vim options and plugin-independent keymaps.
-- `modules/plugins/default.nix`: imports the per-plugin modules and holds small plugins not worth their own file (which-key groups, mini.nvim, treesitter grammars).
+- `modules/languages/default.nix`: imports per-language modules that group filetype detection, LSP servers, formatters, and Treesitter grammars.
+- `modules/plugins/default.nix`: imports the per-plugin modules and holds small plugins plus shared which-key settings and the toggle group.
+- `modules/plugins/treesitter.nix`: shared Treesitter settings and grammars without dedicated language modules.
 - `modules/plugins/<name>.nix`: one file per substantial plugin (lsp, telescope, blink completion, conform formatting, gitsigns, diffview, diagnostics).
 
 ### Conventions
 
-- Keymaps are declared through a small local `keyMap` / `lspKeyMap` helper let-binding in each file that needs one, always with an `options.desc` (kickstart-style `[S]earch [F]iles` mnemonic descriptions, matching the which-key group prefixes defined in `modules/plugins/default.nix`).
+- Keymaps are declared through a small local `keyMap` / `lspKeyMap` helper let-binding in each file that needs one, always with an `options.desc` (kickstart-style `[S]earch [F]iles` mnemonic descriptions, matching the which-key group prefixes defined alongside each feature).
 - Lua is embedded via `__raw` (or `on_attach` / `onAttach` strings) rather than `extraConfigLua`.
-- Formatter and LSP binaries are pinned to nix store paths with `lib.getExe pkgs.<tool>` instead of relying on `$PATH` (see `conform.nix`, `lsp.nix`).
-- New leader-key prefixes should get a which-key `spec` group entry in `modules/plugins/default.nix`.
+- Formatter and LSP binaries are pinned to nix store paths with `lib.getExe pkgs.<tool>` instead of relying on `$PATH` (see `modules/languages/nix.nix` and `modules/languages/python.nix`).
+- New leader-key prefixes should get a which-key `spec` group entry in the module that owns the feature. Shared groups stay in `modules/plugins/default.nix`.

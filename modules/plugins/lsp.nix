@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+let
   telescopeAction = builtin: {
     __raw = "require('telescope.builtin').${builtin}";
   };
@@ -17,22 +13,16 @@
     options.desc = "LSP: ${desc}";
   };
 in {
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "gr";
+      group = "LSP ([G]oto [R]eference)";
+      mode = "n";
+    }
+  ];
+
   plugins.lspconfig.enable = true;
   plugins.fidget.enable = true;
-
-  lsp.servers = {
-    # nixd evaluates the flake, so it can complete NixOS/home-manager
-    # option names and jump to their definitions
-    nixd = {
-      enable = true;
-      config.settings.nixd.formatting.command = ["${lib.getExe pkgs.alejandra}"];
-    };
-
-    basedpyright.enable = true;
-    ruff.enable = true;
-
-    beancount.enable = true;
-  };
 
   lsp.keymaps = [
     (lspKeyMap {
