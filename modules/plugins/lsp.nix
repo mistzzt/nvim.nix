@@ -13,6 +13,14 @@ let
     options.desc = "LSP: ${desc}";
   };
 in {
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "gr";
+      group = "LSP ([G]oto [R]eference)";
+      mode = "n";
+    }
+  ];
+
   plugins.lspconfig.enable = true;
   plugins.fidget.enable = true;
 

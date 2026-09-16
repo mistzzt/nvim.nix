@@ -1,4 +1,11 @@
 {
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>s";
+      group = "[S]earch";
+    }
+  ];
+
   plugins.telescope = {
     enable = true;
     keymaps = {
