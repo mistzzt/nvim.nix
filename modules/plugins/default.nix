@@ -6,6 +6,7 @@
     ./diffview.nix
     ./git.nix
     ./lsp.nix
+    ./neo-tree.nix
     ./orgmode.nix
     ./telescope.nix
     ./treesitter.nix

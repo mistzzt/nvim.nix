@@ -1,6 +1,6 @@
 # Adopting neovim: from VSCode habits to fluency
 
-The config already covers everything needed to replace VSCode for the workflows in [nvim.md](nvim.md). The gap is not missing features, it is trying to absorb ~60 bindings at once. Adopt them in workflow-sized chunks, anchored to existing VSCode habits.
+The config already covers everything needed to replace VSCode for project navigation, diff review, and editing. The gap is not missing features, it is trying to absorb ~60 bindings at once. Adopt them in workflow-sized chunks, anchored to existing VSCode habits.
 
 ## VSCode reflex map
 
@@ -8,6 +8,7 @@ Every VSCode reflex has a direct equivalent. This is the highest-leverage table 
 
 | VSCode habit                     | Neovim equivalent                               |
 | -------------------------------- | ----------------------------------------------- |
+| File explorer                   | `\` opens/focuses Neo-tree; `\` inside closes it |
 | Cmd+P quick open                 | `<C-p>`                                         |
 | Cmd+Shift+F search in project    | `<leader>sg` live grep                          |
 | F12 / Shift+F12 def / references | `grd` / `grr`                                   |
@@ -33,7 +34,7 @@ The stated main use case, so it gets its own week. The core loop after an agent 
 1. `<leader>do` opens diffview against the index, `Tab`/`S-Tab` walks files in the panel, `<leader>dc` closes. Inside the file panel, `-` (or `s`) stages the file under the cursor; for hunk-level staging, use gitsigns `<leader>hs` in the working-tree buffer.
 2. Or the quickfix variant for fine-grained review: `<leader>hQ` dumps every hunk in the repo into quickfix, `:cn`/`:cp` walks them, `<leader>hp` previews, `<leader>hs` stages the good ones, `<leader>hr` rejects the bad ones.
 
-Run the acceptance test from nvim.md: have an agent make a multi-file change and review plus stage it entirely in neovim. Three or four repetitions and this loop sticks.
+Practice the full review loop: have an agent make a multi-file change and review plus stage it entirely in neovim. Three or four repetitions and this loop sticks.
 
 ### Week 3: editing polish
 
@@ -41,7 +42,9 @@ Run the acceptance test from nvim.md: have an agent make a multi-file change and
 
 ## Tactics
 
-**Shrink the cheatsheet.** [keybindings.md](keybindings.md) is a reference, not a learning tool. Keep a scratch note with just the current week's 5 or 6 bindings. Add one, drop one as they stick.
+**Shrink the cheatsheet.** The [keybinding reference](#neovim) is a reference, not a learning tool. Keep a scratch note with just the current week's 5 or 6 bindings. Add one, drop one as they stick.
+
+**Explore with Neo-tree.** Press `\` to open or focus the file tree and reveal the current file; press `\` inside the tree to close it. Opening a directory (such as `nvim .`) opens the tree automatically; normal startup leaves it hidden. Use `<C-p>`/`<leader>sf` when you know which file you want, and `?` inside the tree for its shortcuts.
 
 **Make VSCode slightly inconvenient, not forbidden.** VSCode stays enabled, but the rule is: agent-diff review and any edit on the dev hosts happens in neovim; VSCode is allowed only when genuinely stuck. The reconnect friction of VSCode Remote naturally enforces this on precision/van/swan.
 
@@ -49,8 +52,7 @@ Run the acceptance test from nvim.md: have an agent make a multi-file change and
 
 Known in advance so they do not read as breakage:
 
-- **No file tree.** Deliberate (neo-tree is permanently out). `<C-p>`/`<leader>sf` replaces it, but the first week feels disorienting. For "what is in this directory", builtin `:Explore` (netrw) exists without adding anything; revisit the decision only if that proves insufficient.
-- **No autopairs, no snippets.** Also deliberate. If typing closing brackets manually turns out to be real friction after a few weeks, that is exactly the "friction proves it necessary" trigger from the design doc.
+- **No autopairs, no snippets.** Also deliberate. If typing closing brackets manually turns out to be real friction after a few weeks, revisit that choice.
 - **No integrated terminal needed.** herdr panes are the terminal. `<Esc><Esc>` exits terminal mode if `:term` ever gets opened.
 
 ## herdr and tmux
@@ -67,6 +69,7 @@ Leader is space. which-key pops up on any prefix, so this lists only the load-be
 
 | Binding      | Action                             |
 | ------------ | ---------------------------------- |
+| `\`         | Reveal file in Neo-tree; close from tree |
 | `<C-hjkl>`   | Window focus                       |
 | `<C-p>`      | Git files picker (VSCode habit)    |
 | `<leader>f`  | Format buffer (conform)            |
