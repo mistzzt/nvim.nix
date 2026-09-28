@@ -24,6 +24,7 @@ nix flake check    # nixvim's headless smoke test
 | **nvim-treesitter**    | Incremental parser giving accurate syntax highlighting and indentation from real grammars, not regex                                                               |
 | **todo-comments.nvim** | Highlights `TODO`/`FIXME`/`HACK`/`NOTE` in comments and makes them searchable; useful for finding agent-left markers                                               |
 | **orgmode.nvim**       | Org-mode editing and task management, with agenda files under `~/personal/orbit`, inbox capture, custom TODO states, and per-file archives                         |
+| **markdown-preview.nvim** | Live markdown preview in the browser: auto-starts on markdown buffers, reuses one page across buffers, and echoes a fixed `localhost:8080` URL to open on the host. `<leader>tm` toggles it |
 | **mini.ai**            | Extra textobjects: `vaf` function, `ciq` quotes, argument objects, etc.                                                                                            |
 | **mini.surround**      | Add/change/delete surrounding pairs: `saiw)` surround word, `sd'` delete quotes, `sr)'` replace                                                                    |
 | **mini.statusline**    | Minimal statusline: mode, file, git branch, diagnostics, position                                                                                                  |
