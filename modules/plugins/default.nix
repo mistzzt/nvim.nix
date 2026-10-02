@@ -6,7 +6,7 @@
     ./diffview.nix
     ./git.nix
     ./lsp.nix
-    ./markdown-preview.nix
+    ./live-preview.nix
     ./neo-tree.nix
     ./orgmode.nix
     ./telescope.nix
