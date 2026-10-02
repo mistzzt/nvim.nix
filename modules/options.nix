@@ -10,6 +10,33 @@
     }
   ];
 
+  # over ssh, copy via OSC 52 but paste the last copy locally: multiplexers like herdr never
+  # answer OSC 52 reads, and which-key's `"` popup would block on one unless named "OSC 52"
+  globals.clipboard.__raw = ''
+    (function()
+      if not (vim.env.SSH_CONNECTION or vim.env.SSH_TTY) then
+        return nil
+      end
+      local osc52 = require('vim.ui.clipboard.osc52')
+      local copied = { ['+'] = {}, ['*'] = {} }
+      local function copy(reg)
+        local send = osc52.copy(reg)
+        return function(lines, regtype)
+          copied[reg] = { lines, regtype }
+          send(lines)
+        end
+      end
+      local function paste(reg)
+        return function() return copied[reg] end
+      end
+      return {
+        name = 'OSC 52',
+        copy = { ['+'] = copy('+'), ['*'] = copy('*') },
+        paste = { ['+'] = paste('+'), ['*'] = paste('*') },
+      }
+    end)()
+  '';
+
   opts = {
     number = true;
     relativenumber = true;
