@@ -23,7 +23,6 @@ nix flake check    # nixvim's headless smoke test
 | **neo-tree.nvim**      | File tree for exploring projects: `\` reveals the current file; `\` inside the tree closes it. Opens automatically when editing a directory, otherwise stays hidden at startup |
 | **nvim-treesitter**    | Incremental parser giving accurate syntax highlighting and indentation from real grammars, not regex                                                               |
 | **todo-comments.nvim** | Highlights `TODO`/`FIXME`/`HACK`/`NOTE` in comments and makes them searchable; useful for finding agent-left markers                                               |
-| **orgmode.nvim**       | Org-mode editing and task management, with agenda files under `~/personal/orbit`, inbox capture, custom TODO states, and per-file archives                         |
 | **live-preview.nvim** | Live browser preview of markdown (KaTeX math, Mermaid, images; all assets bundled locally) served from nvim itself on a fresh free port. `<leader>tm` toggles it and echoes the URL to open on the host |
 | **mini.ai**            | Extra textobjects: `vaf` function, `ciq` quotes, argument objects, etc.                                                                                            |
 | **mini.surround**      | Add/change/delete surrounding pairs: `saiw)` surround word, `sd'` delete quotes, `sr)'` replace                                                                    |
