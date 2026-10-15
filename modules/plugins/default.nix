@@ -8,7 +8,6 @@
     ./lsp.nix
     ./live-preview.nix
     ./neo-tree.nix
-    ./orgmode.nix
     ./telescope.nix
     ./treesitter.nix
   ];
