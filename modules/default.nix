@@ -19,4 +19,16 @@
       };
     };
   };
+
+  # mode 2031 only reports theme changes, so one made while detached from a multiplexer is
+  # missed; re-query the terminal background on focus and let the builtin handler update it
+  autoGroups.nvim-requery-background.clear = true;
+  autoCmd = [
+    {
+      event = "FocusGained";
+      group = "nvim-requery-background";
+      desc = "Re-query the terminal background color";
+      callback.__raw = "function() vim.api.nvim_ui_send('\\027]11;?\\007') end";
+    }
+  ];
 }
