@@ -20,8 +20,7 @@
     };
   };
 
-  # mode 2031 only reports theme changes, so one made while detached from a multiplexer is
-  # missed; re-query the terminal background on focus and let the builtin handler update it
+  # catch theme changes missed while detached from a multiplexer
   autoGroups.nvim-requery-background.clear = true;
   autoCmd = [
     {
